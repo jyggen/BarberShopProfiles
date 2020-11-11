@@ -1,0 +1,10 @@
+## Interface: 90001
+## Title: BarberShop Profiles
+## Author: jyggen
+## LoadOnDemand: 1
+## LoadWith: Blizzard_BarberShopUI
+## SavedVariables: BarberShopProfilesDB
+## Version: @project-version@
+embeds.xml
+Core.lua
+Frames.lua
