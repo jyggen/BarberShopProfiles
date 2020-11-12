@@ -57,13 +57,23 @@ StaticPopupDialogs["BARBERSHOPPROFILES_NEW_PROFILE"] = {
     end
 }
 
+local function prepareTooltipOptions(frame, text)
+    frame:AddTooltipLine(text, HIGHLIGHT_FONT_COLOR)
+    frame.tooltipAnchor = "ANCHOR_BOTTOMRIGHT"
+    frame.tooltipXOffset = -5
+    frame.tooltipYOffset = -5
+    frame.tooltipMinWidth = nil
+end
+
 function MainFrame:OnInitialize()
     self.frame = CreateFrame("FRAME", addonName .. "MainFrame", CharCustomizeFrame.SmallButtons, "HorizontalLayoutFrame")
     self.frame:SetPoint("TOPLEFT", CharCustomizeFrame.SmallButtons, "BOTTOMLEFT", 0, 0)
 end
 
 function DeleteButtonFrame:OnInitialize()
-    self.frame = CreateFrame("BUTTON", addonName .. "DeleteButtonFrame", MainFrame.frame, "SquareIconButtonTemplate")
+    self.frame = CreateFrame("BUTTON", addonName .. "DeleteButtonFrame", MainFrame.frame, "SquareIconButtonTemplate,CharCustomizeFrameWithTooltipTemplate")
+
+    prepareTooltipOptions(self.frame, "Delete")
 
     self.frame.layoutIndex = 3
     self.frame:SetAtlas("common-icon-redx")
@@ -75,7 +85,9 @@ function DeleteButtonFrame:OnInitialize()
 end
 
 function LoadButtonFrame:OnInitialize()
-    self.frame = CreateFrame("BUTTON", addonName .. "LoadButtonFrame", MainFrame.frame, "SquareIconButtonTemplate")
+    self.frame = CreateFrame("BUTTON", addonName .. "LoadButtonFrame", MainFrame.frame, "SquareIconButtonTemplate,CharCustomizeFrameWithTooltipTemplate")
+
+    prepareTooltipOptions(self.frame, "Load")
 
     self.frame.layoutIndex = 1
     self.frame:SetAtlas("common-icon-undo")
@@ -126,7 +138,9 @@ function ProfilePickerFrame:SetValue(newValue)
 end
 
 function SaveButtonFrame:OnInitialize()
-    self.frame = CreateFrame("BUTTON", addonName .. "SaveButtonFrame", MainFrame.frame, "SquareIconButtonTemplate")
+    self.frame = CreateFrame("BUTTON", addonName .. "SaveButtonFrame", MainFrame.frame, "SquareIconButtonTemplate,CharCustomizeFrameWithTooltipTemplate")
+
+    prepareTooltipOptions(self.frame, "Save")
 
     self.frame.layoutIndex = 2
     self.frame:SetAtlas("common-icon-checkmark")
