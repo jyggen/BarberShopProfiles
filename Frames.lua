@@ -7,7 +7,7 @@ local ProfilePickerFrame = Core:NewModule("ProfilePickerFrame")
 local SaveButtonFrame = Core:NewModule("SaveButtonFrame")
 
 StaticPopupDialogs["BARBERSHOPPROFILES_CONFIRM_DELETE"] = {
-    text = "Are you sure you want to delete this profile?",
+    text = "Are you sure you want to delete \"%s\"?",
     preferredIndex = 3,
     button1 = "Yes",
     button2 = "No",
@@ -56,7 +56,7 @@ function DeleteButtonFrame:OnInitialize()
     self.frame.layoutIndex = 3
     self.frame:SetAtlas("common-icon-redx")
     self.frame:SetScript("OnClick", function (self, button, down)
-        local dialog = StaticPopup_Show("BARBERSHOPPROFILES_CONFIRM_DELETE")
+        local dialog = StaticPopup_Show("BARBERSHOPPROFILES_CONFIRM_DELETE", Core:GetCurrentProfileName())
 
         dialog:SetParent(MainFrame.frame)
     end)
