@@ -31,7 +31,8 @@ StaticPopupDialogs["BARBERSHOPPROFILES_CONFIRM_SAVE"] = {
     end,
 }
 
-StaticPopupDialogs["BARBERSHOPPROFILES_PROFILE_NAME"] = {
+
+StaticPopupDialogs["BARBERSHOPPROFILES_NEW_PROFILE"] = {
     text = "What do you want to name this profile?",
     preferredIndex = 3,
     button1 = "Save",
@@ -131,7 +132,7 @@ function SaveButtonFrame:OnInitialize()
     self.frame:SetAtlas("common-icon-checkmark")
     self.frame:SetScript("OnClick", function (self, button, down)
         if Core:IsCurrentProfileNew() then
-            local dialog = StaticPopup_Show("BARBERSHOPPROFILES_PROFILE_NAME")
+            local dialog = StaticPopup_Show("BARBERSHOPPROFILES_NEW_PROFILE")
 
             dialog:SetParent(MainFrame.frame)
         else
