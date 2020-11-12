@@ -6,9 +6,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.2.0] - 2020-11-12
+### Added
+- A dialog asking for the user's confirmation when overwriting an existing profile.
+- Tooltips to all buttons to make it more clear what they do.
+
+### Changed
+- The delete dialog will now display the name of the profile being deleted.
+
 ## [0.1.0] - 2020-11-11
 ### Added
 - Initial release.
 
-[Unreleased]: https://github.com/jyggen/BarberShopProfiles/compare/0.1.0...HEAD
+[Unreleased]: https://github.com/jyggen/BarberShopProfiles/compare/0.2.0...HEAD
+[0.2.0]: https://github.com/jyggen/BarberShopProfiles/compare/0.1.0...0.2.0
 [0.1.0]: https://github.com/jyggen/BarberShopProfiles/releases/tag/0.1.0
