@@ -19,6 +19,17 @@ StaticPopupDialogs["BARBERSHOPPROFILES_CONFIRM_DELETE"] = {
     end,
 }
 
+StaticPopupDialogs["BARBERSHOPPROFILES_CONFIRM_SAVE"] = {
+    text = "Are you sure you want to overwrite \"%s\"?",
+    preferredIndex = 3,
+    button1 = "Yes",
+    button2 = "No",
+    timeout = 0,
+    hideOnEscape = true,
+    OnAccept = function (self, data)
+        Core:SaveCurrentProfileAs(Core:GetCurrentProfileName())
+    end,
+}
 
 StaticPopupDialogs["BARBERSHOPPROFILES_PROFILE_NAME"] = {
     text = "What do you want to name this profile?",
@@ -124,7 +135,9 @@ function SaveButtonFrame:OnInitialize()
 
             dialog:SetParent(MainFrame.frame)
         else
-            Core:SaveCurrentProfileAs(Core:GetCurrentProfileName())
+            local dialog = StaticPopup_Show("BARBERSHOPPROFILES_CONFIRM_SAVE", Core:GetCurrentProfileName())
+
+            dialog:SetParent(MainFrame.frame)
         end
     end)
 end
