@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.0.1] - 2020-11-22
+### Fixed
+- CallbackHandler-1.0 should now be embedded properly.
+
 ## [1.0.0] - 2020-11-22
 ### Added
 - The character's sex will now be stored when saving a profile and changed automatically

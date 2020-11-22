@@ -14,7 +14,7 @@ externals:
         url: https://repos.wowace.com/wow/ace3/trunk/AceEvent-3.0
         tag: latest
     libs/CallbackHandler-1.0:
-        url: https://repos.wowace.com/wow/callbackhandler/trunk
+        url: https://repos.wowace.com/wow/callbackhandler/trunk/CallbackHandler-1.0
         tag: latest
 manual-changelog:
     filename: CHANGELOG.md
