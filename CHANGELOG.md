@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.0.2] - 2020-11-22
+### Changed
+- A version without libraries is once again published on CurseForge.
+
 ## [1.0.1] - 2020-11-22
 ### Fixed
 - CallbackHandler-1.0 should now be embedded properly.
@@ -15,6 +19,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - The character's sex will now be stored when saving a profile and changed automatically
   whenever the profile is loaded. Please note that profiles saved with an earlier version
   of the addon will have to be saved again in order to make use of this feature.
+
+### Changed
+- A version without libraries is no longer published on CurseForge.
 
 ## [0.2.0] - 2020-11-12
 ### Added
@@ -28,7 +35,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - Initial release.
 
-[Unreleased]: https://github.com/jyggen/BarberShopProfiles/compare/1.0.1...HEAD
+[Unreleased]: https://github.com/jyggen/BarberShopProfiles/compare/1.0.2...HEAD
+[1.0.2]: https://github.com/jyggen/BarberShopProfiles/compare/1.0.1...1.0.2
 [1.0.1]: https://github.com/jyggen/BarberShopProfiles/compare/1.0.0...1.0.1
 [1.0.0]: https://github.com/jyggen/BarberShopProfiles/compare/0.2.0...1.0.0
 [0.2.0]: https://github.com/jyggen/BarberShopProfiles/compare/0.1.0...0.2.0
