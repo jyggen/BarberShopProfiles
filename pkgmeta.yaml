@@ -9,6 +9,12 @@ externals:
     libs/AceDB-3.0:
         url: https://repos.wowace.com/wow/ace3/trunk/AceDB-3.0
         tag: latest
+    libs/AceEvent-3.0:
+        url: https://repos.wowace.com/wow/ace3/trunk/AceEvent-3.0
+        tag: latest
+    libs/CallbackHandler-1.0:
+        url: https://repos.wowace.com/wow/callbackhandler/trunk
+        tag: latest
 manual-changelog:
     filename: CHANGELOG.md
     markup-type: markdown

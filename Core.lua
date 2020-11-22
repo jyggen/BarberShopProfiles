@@ -1,5 +1,5 @@
 local addonName = "BarberShopProfiles"
-local BarberShopProfiles = LibStub("AceAddon-3.0"):NewAddon(addonName)
+local BarberShopProfiles = LibStub("AceAddon-3.0"):NewAddon(addonName, "AceEvent-3.0")
 
 
 function BarberShopProfiles:OnInitialize()
@@ -71,20 +71,35 @@ function BarberShopProfiles:IsCurrentProfileNew()
 end
 
 function BarberShopProfiles:ApplyCurrentProfile()
-    local choices = self.db.race.profiles[self.selected].choices
+    local profile = self.db.race.profiles[self.selected]
+    local characterData = C_BarberShop.GetCurrentCharacterData()
 
-    for oid in pairs(choices) do
-        C_BarberShop.SetCustomizationChoice(oid, choices[oid])
+    if not characterData then
+        return
     end
 
-    BarberShopFrame:UpdateCharCustomizationFrame()
+    local applyChoices = function()
+        for oid in pairs(profile.choices) do
+            BarberShopFrame:SetCustomizationChoice(oid, profile.choices[oid])
+        end
+    end
+
+    -- If we end up changing the sex, we need to wait for BARBER_SHOP_CAMERA_VALUES_UPDATED
+    -- or appearance choices won't be visible  on the model.
+    if profile.sex ~= nil and profile.sex ~= characterData.sex then
+        self:RegisterEvent("BARBER_SHOP_CAMERA_VALUES_UPDATED", applyChoices)
+        BarberShopFrame:SetCharacterSex(profile.sex)
+    else
+        applyChoices()
+    end
 end
 
 function BarberShopProfiles:SaveCurrentProfileAs(name)
     local choices = {}
     local categories = C_BarberShop.GetAvailableCustomizations()
+    local characterData = C_BarberShop.GetCurrentCharacterData()
 
-    if not categories then
+    if not categories or not characterData then
         return
     end
 
@@ -97,6 +112,7 @@ function BarberShopProfiles:SaveCurrentProfileAs(name)
     self.db.race.profiles[self.selected] = {
         name = name,
         choices = choices,
+        sex = characterData.sex,
     }
 end
 
