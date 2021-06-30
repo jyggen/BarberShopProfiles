@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.0.5] - 2021-06-30
+### Changed
+- Bump TOC version to `90100`.
+
 ## [1.0.4] - 2021-03-10
 ### Changed
 - Bump TOC version to `90005`.
@@ -43,7 +47,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - Initial release.
 
-[Unreleased]: https://github.com/jyggen/BarberShopProfiles/compare/1.0.4...HEAD
+[Unreleased]: https://github.com/jyggen/BarberShopProfiles/compare/1.0.5...HEAD
+[1.0.5]: https://github.com/jyggen/BarberShopProfiles/compare/1.0.4...1.0.5
 [1.0.4]: https://github.com/jyggen/BarberShopProfiles/compare/1.0.3...1.0.4
 [1.0.3]: https://github.com/jyggen/BarberShopProfiles/compare/1.0.2...1.0.3
 [1.0.2]: https://github.com/jyggen/BarberShopProfiles/compare/1.0.1...1.0.2
