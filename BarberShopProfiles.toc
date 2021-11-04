@@ -1,4 +1,4 @@
-## Interface: 90100
+## Interface: 90105
 ## Title: BarberShop Profiles
 ## Author: jyggen
 ## LoadOnDemand: 1
