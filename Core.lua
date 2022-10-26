@@ -39,7 +39,7 @@ end
 function BarberShopProfiles:GetCurrentProfileName()
     if self:IsCurrentProfileNew() then
         return self.systemProfile.name
-    end 
+    end
 
     return self.db.race.profiles[self.selected].name
 end

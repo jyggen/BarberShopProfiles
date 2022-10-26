@@ -76,7 +76,7 @@ function DeleteButtonFrame:OnInitialize()
     prepareTooltipOptions(self.frame, "Delete")
 
     self.frame.layoutIndex = 3
-    self.frame:SetAtlas("common-icon-redx")
+    self.frame:SetAtlas("common-icon-redx", true)
     self.frame:SetScript("OnClick", function (self, button, down)
         local dialog = StaticPopup_Show("BARBERSHOPPROFILES_CONFIRM_DELETE", Core:GetCurrentProfileName())
 
@@ -90,7 +90,7 @@ function LoadButtonFrame:OnInitialize()
     prepareTooltipOptions(self.frame, "Load")
 
     self.frame.layoutIndex = 1
-    self.frame:SetAtlas("common-icon-undo")
+    self.frame:SetAtlas("common-icon-undo", true)
     self.frame:SetScript("OnClick", function (self, button, down)
         Core:ApplyCurrentProfile()
     end)
@@ -109,7 +109,7 @@ function ProfilePickerFrame:OnInitialize()
 
         for i, profile in ipairs(Core:GetProfiles()) do
             local info = UIDropDownMenu_CreateInfo()
-        
+
             info.checked = profile.id == currentId
             info.text = profile.name
             info.value = profile.id
@@ -143,7 +143,7 @@ function SaveButtonFrame:OnInitialize()
     prepareTooltipOptions(self.frame, "Save")
 
     self.frame.layoutIndex = 2
-    self.frame:SetAtlas("common-icon-checkmark")
+    self.frame:SetAtlas("common-icon-checkmark", true)
     self.frame:SetScript("OnClick", function (self, button, down)
         if Core:IsCurrentProfileNew() then
             local dialog = StaticPopup_Show("BARBERSHOPPROFILES_NEW_PROFILE")
