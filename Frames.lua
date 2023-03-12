@@ -3,7 +3,7 @@ local Core = LibStub("AceAddon-3.0"):GetAddon(addonName)
 local MainFrame = Core:NewModule("MainFrame")
 local DeleteButtonFrame = Core:NewModule("DeleteButtonFrame")
 local LoadButtonFrame = Core:NewModule("LoadButtonFrame")
-local ProfilePickerFrame = Core:NewModule("ProfilePickerFrame")
+local ProfilePickerFrame = Core:NewModule("ProfilePickerFrame", "AceEvent-3.0")
 local SaveButtonFrame = Core:NewModule("SaveButtonFrame")
 
 StaticPopupDialogs["BARBERSHOPPROFILES_CONFIRM_DELETE"] = {
@@ -102,25 +102,32 @@ function ProfilePickerFrame:OnInitialize()
     self.frame:SetPoint("CENTER")
     self.frame.layoutIndex = 0
 
-    UIDropDownMenu_SetWidth(self.frame, 200)
+    local initializeDropdown = function()
+        Core:SetCurrentProfileTo(Core.systemProfile.id)
 
-    UIDropDownMenu_Initialize(self.frame, function(self)
-        local currentId = Core:GetCurrentProfileId()
+        UIDropDownMenu_Initialize(self.frame, function(self)
+            local currentId = Core:GetCurrentProfileId()
 
-        for i, profile in ipairs(Core:GetProfiles()) do
-            local info = UIDropDownMenu_CreateInfo()
+            for i, profile in ipairs(Core:GetProfiles()) do
+                local info = UIDropDownMenu_CreateInfo()
 
-            info.checked = profile.id == currentId
-            info.text = profile.name
-            info.value = profile.id
-            info.func = ProfilePickerFrame.SetValue
-            info.arg1 = profile.id
+                info.checked = profile.id == currentId
+                info.text = profile.name
+                info.value = profile.id
+                info.func = ProfilePickerFrame.SetValue
+                info.arg1 = profile.id
 
-            UIDropDownMenu_AddButton(info)
-        end
-    end)
+                UIDropDownMenu_AddButton(info)
+            end
+        end)
 
-    self:SetValue(Core:GetCurrentProfileId())
+        UIDropDownMenu_SetWidth(self.frame, 200)
+
+        self:SetValue(Core:GetCurrentProfileId())
+    end
+
+    self:RegisterEvent("BARBER_SHOP_CAMERA_VALUES_UPDATED", initializeDropdown)
+    initializeDropdown()
 end
 
 function ProfilePickerFrame:SetValue(newValue)

@@ -46,12 +46,15 @@ end
 
 function BarberShopProfiles:GetProfiles()
     local profiles = {}
+    local isAltered = C_BarberShop.IsViewingAlteredForm()
 
     for id in pairs(self.db.race.profiles) do
-        table.insert(profiles, {
-            id = id,
-            name = self.db.race.profiles[id].name,
-        })
+        if self.db.race.profiles[id].isAltered == nil or self.db.race.profiles[id].isAltered == isAltered then
+            table.insert(profiles, {
+                id = id,
+                name = self.db.race.profiles[id].name,
+            })
+        end
     end
 
     table.sort(profiles, function (keyL, keyR)
@@ -98,6 +101,7 @@ function BarberShopProfiles:SaveCurrentProfileAs(name)
     local choices = {}
     local categories = C_BarberShop.GetAvailableCustomizations()
     local characterData = C_BarberShop.GetCurrentCharacterData()
+    local isAltered = C_BarberShop.IsViewingAlteredForm()
 
     if not categories or not characterData then
         return
@@ -113,6 +117,7 @@ function BarberShopProfiles:SaveCurrentProfileAs(name)
         name = name,
         choices = choices,
         sex = characterData.sex,
+        isAltered = isAltered,
     }
 end
 
