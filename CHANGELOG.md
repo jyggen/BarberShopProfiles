@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.1.1] - 2023-12-15
+### Changed
+- Bump TOC version to `100200`.
+
 ## [1.1.0] - 2023-03-12
 ### Added
 - A flag indicating if the profile is for the race's alternate form or not will
@@ -74,7 +78,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - Initial release.
 
-[Unreleased]: https://github.com/jyggen/BarberShopProfiles/compare/1.1.0...HEAD
+[Unreleased]: https://github.com/jyggen/BarberShopProfiles/compare/1.1.1...HEAD
+[1.1.1]: https://github.com/jyggen/BarberShopProfiles/compare/1.1.0...1.1.1
 [1.1.0]: https://github.com/jyggen/BarberShopProfiles/compare/1.0.8...1.1.0
 [1.0.8]: https://github.com/jyggen/BarberShopProfiles/compare/1.0.7...1.0.8
 [1.0.7]: https://github.com/jyggen/BarberShopProfiles/compare/1.0.6...1.0.7
