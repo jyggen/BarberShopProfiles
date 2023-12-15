@@ -61,11 +61,6 @@ function BarberShopProfiles:GetProfiles()
         return keyL.name:lower() < keyR.name:lower()
     end)
 
-    table.insert(profiles, {
-        id = self.systemProfile.id,
-        name = self.systemProfile.name,
-    })
-
     return profiles
 end
 

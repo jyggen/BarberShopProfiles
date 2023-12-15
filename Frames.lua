@@ -98,6 +98,8 @@ end
 
 function ProfilePickerFrame:OnInitialize()
     self.frame = CreateFrame("FRAME", addonName .. "ProfilePickerFrame", MainFrame.frame, "UIDropDownMenuTemplate")
+    self.page = 1
+    self.limit = 25
 
     self.frame:SetPoint("CENTER")
     self.frame.layoutIndex = 0
@@ -107,17 +109,67 @@ function ProfilePickerFrame:OnInitialize()
 
         UIDropDownMenu_Initialize(self.frame, function(self)
             local currentId = Core:GetCurrentProfileId()
+            local maxPage = math.ceil(#Core:GetProfiles() / ProfilePickerFrame.limit)
+
+            if ProfilePickerFrame.page > maxPage then
+                ProfilePickerFrame.page = maxPage
+            end
+
+            local upper = (ProfilePickerFrame.page*ProfilePickerFrame.limit)
+            local lower = upper-ProfilePickerFrame.limit
+
+            local info = UIDropDownMenu_CreateInfo()
+            info.text = "Profiles"
+            info.isTitle = true
+            UIDropDownMenu_AddButton(info)
 
             for i, profile in ipairs(Core:GetProfiles()) do
+                if i <= upper and i > lower then
+                    local info = UIDropDownMenu_CreateInfo()
+
+                    info.checked = profile.id == currentId
+                    info.text = profile.name
+                    info.value = profile.id
+                    info.func = ProfilePickerFrame.SetValue
+                    info.arg1 = profile.id
+
+                    UIDropDownMenu_AddButton(info)
+                end
+            end
+
+            local info = UIDropDownMenu_CreateInfo()
+
+            info.checked = Core.systemProfile.id == currentId
+            info.text = Core.systemProfile.name
+            info.value = Core.systemProfile.id
+            info.func = ProfilePickerFrame.SetValue
+            info.arg1 = Core.systemProfile.id
+
+            UIDropDownMenu_AddButton(info)
+
+            if maxPage > 1 then
                 local info = UIDropDownMenu_CreateInfo()
-
-                info.checked = profile.id == currentId
-                info.text = profile.name
-                info.value = profile.id
-                info.func = ProfilePickerFrame.SetValue
-                info.arg1 = profile.id
-
+                info.text = "Pages (" .. ProfilePickerFrame.page .. " of " .. maxPage .. ")"
+                info.isTitle = true
                 UIDropDownMenu_AddButton(info)
+
+                if ProfilePickerFrame.page > 1 then
+                    local info = UIDropDownMenu_CreateInfo()
+
+                    info.text = "Previous Page"
+                    info.func = ProfilePickerFrame.PreviousPage
+
+                    UIDropDownMenu_AddButton(info)
+                end
+
+                if ProfilePickerFrame.page < maxPage then
+                    local info = UIDropDownMenu_CreateInfo()
+
+                    info.text = "Next Page"
+                    info.func = ProfilePickerFrame.NextPage
+
+                    UIDropDownMenu_AddButton(info)
+                end
             end
         end)
 
@@ -128,6 +180,14 @@ function ProfilePickerFrame:OnInitialize()
 
     self:RegisterEvent("BARBER_SHOP_CAMERA_VALUES_UPDATED", initializeDropdown)
     initializeDropdown()
+end
+
+function ProfilePickerFrame:PreviousPage()
+    ProfilePickerFrame.page = ProfilePickerFrame.page-1
+end
+
+function ProfilePickerFrame:NextPage()
+    ProfilePickerFrame.page = ProfilePickerFrame.page+1
 end
 
 function ProfilePickerFrame:SetValue(newValue)
