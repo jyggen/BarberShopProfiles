@@ -83,7 +83,7 @@ function BarberShopProfiles:ApplyCurrentProfile()
     end
 
     -- If we end up changing the sex, we need to wait for BARBER_SHOP_CAMERA_VALUES_UPDATED
-    -- or appearance choices won't be visible  on the model.
+    -- or appearance choices won't be visible on the model.
     if profile.sex ~= nil and profile.sex ~= characterData.sex then
         self:RegisterEvent("BARBER_SHOP_CAMERA_VALUES_UPDATED", applyChoices)
         BarberShopFrame:SetCharacterSex(profile.sex)

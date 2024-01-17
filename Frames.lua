@@ -109,7 +109,7 @@ function ProfilePickerFrame:OnInitialize()
 
         UIDropDownMenu_Initialize(self.frame, function(self)
             local currentId = Core:GetCurrentProfileId()
-            local maxPage = math.ceil(#Core:GetProfiles() / ProfilePickerFrame.limit)
+            local maxPage = math.max(math.ceil(#Core:GetProfiles() / ProfilePickerFrame.limit), 1)
 
             if ProfilePickerFrame.page > maxPage then
                 ProfilePickerFrame.page = maxPage
