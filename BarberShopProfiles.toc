@@ -1,4 +1,4 @@
-## Interface: 100205
+## Interface: 110007
 ## Title: BarberShop Profiles
 ## Author: jyggen
 ## LoadOnDemand: 1
