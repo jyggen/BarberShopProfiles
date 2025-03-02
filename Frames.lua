@@ -71,7 +71,7 @@ function MainFrame:OnInitialize()
 end
 
 function DeleteButtonFrame:OnInitialize()
-    self.frame = CreateFrame("BUTTON", addonName .. "DeleteButtonFrame", MainFrame.frame, "SquareIconButtonTemplate,CharCustomizeFrameWithTooltipTemplate")
+    self.frame = CreateFrame("BUTTON", addonName .. "DeleteButtonFrame", MainFrame.frame, "SquareIconButtonTemplate,CustomizationFrameWithTooltipTemplate")
 
     prepareTooltipOptions(self.frame, "Delete")
 
@@ -85,7 +85,7 @@ function DeleteButtonFrame:OnInitialize()
 end
 
 function LoadButtonFrame:OnInitialize()
-    self.frame = CreateFrame("BUTTON", addonName .. "LoadButtonFrame", MainFrame.frame, "SquareIconButtonTemplate,CharCustomizeFrameWithTooltipTemplate")
+    self.frame = CreateFrame("BUTTON", addonName .. "LoadButtonFrame", MainFrame.frame, "SquareIconButtonTemplate,CustomizationFrameWithTooltipTemplate")
 
     prepareTooltipOptions(self.frame, "Load")
 
@@ -205,7 +205,7 @@ function ProfilePickerFrame:SetValue(newValue)
 end
 
 function SaveButtonFrame:OnInitialize()
-    self.frame = CreateFrame("BUTTON", addonName .. "SaveButtonFrame", MainFrame.frame, "SquareIconButtonTemplate,CharCustomizeFrameWithTooltipTemplate")
+    self.frame = CreateFrame("BUTTON", addonName .. "SaveButtonFrame", MainFrame.frame, "SquareIconButtonTemplate,CustomizationFrameWithTooltipTemplate")
 
     prepareTooltipOptions(self.frame, "Save")
 
