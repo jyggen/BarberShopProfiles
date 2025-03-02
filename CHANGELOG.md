@@ -6,6 +6,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.2.3] - 2025-03-02
+### Changed
+- Bump TOC version to `110100`.
+
+### Fixed
+- Use `CustomizationFrameWithTooltipTemplate` instead of `CharCustomizeFrameWithTooltipTemplate`.
+
 ## [1.2.2] - 2025-01-07
 ### Changed
 - Bump TOC version to `110007`.
@@ -93,7 +100,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - Initial release.
 
-[Unreleased]: https://github.com/jyggen/BarberShopProfiles/compare/1.2.2...HEAD
+[Unreleased]: https://github.com/jyggen/BarberShopProfiles/compare/1.2.3...HEAD
+[1.2.3]: https://github.com/jyggen/BarberShopProfiles/compare/1.2.2...1.2.3
 [1.2.2]: https://github.com/jyggen/BarberShopProfiles/compare/1.2.1...1.2.2
 [1.2.1]: https://github.com/jyggen/BarberShopProfiles/compare/1.2.0...1.2.1
 [1.2.0]: https://github.com/jyggen/BarberShopProfiles/compare/1.1.1...1.2.0
