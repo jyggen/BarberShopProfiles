@@ -12,10 +12,31 @@ StaticPopupDialogs["BARBERSHOPPROFILES_CONFIRM_DELETE"] = {
     button1 = "Yes",
     button2 = "No",
     timeout = 0,
-    hideOnEscape = true,
+    hideOnEscape = false,
+
     OnAccept = function (self, data)
         Core:DeleteCurrentProfile()
         ProfilePickerFrame:SetValue(Core:GetCurrentProfileId())
+    end,
+
+    OnShow = function(self)
+        self:EnableKeyboard(true)
+
+        self:SetScript("OnKeyDown", function(_, key)
+            if key == "ESCAPE" then
+                StaticPopup_Hide("BARBERSHOPPROFILES_CONFIRM_DELETE")
+            elseif key == "ENTER" then
+                local button = self:GetButton(1)
+                if button and button:IsEnabled() then
+                    button:Click()
+                end
+            end
+        end)
+    end,
+
+    OnHide = function(self)
+        self:SetScript("OnKeyDown", nil)
+        self:EnableKeyboard(false)
     end,
 }
 
@@ -25,12 +46,31 @@ StaticPopupDialogs["BARBERSHOPPROFILES_CONFIRM_SAVE"] = {
     button1 = "Yes",
     button2 = "No",
     timeout = 0,
-    hideOnEscape = true,
+    hideOnEscape = false,
+
     OnAccept = function (self, data)
         Core:SaveCurrentProfileAs(Core:GetCurrentProfileName())
     end,
-}
 
+    OnShow = function(self)
+        self:EnableKeyboard(true)
+        self:SetScript("OnKeyDown", function(_, key)
+            if key == "ESCAPE" then
+                StaticPopup_Hide("BARBERSHOPPROFILES_CONFIRM_SAVE")
+            elseif key == "ENTER" then
+                local button = self:GetButton(1)
+                if button and button:IsEnabled() then
+                    button:Click()
+                end
+            end
+        end)
+    end,
+
+    OnHide = function(self)
+        self:SetScript("OnKeyDown", nil)
+        self:EnableKeyboard(false)
+    end,
+}
 
 StaticPopupDialogs["BARBERSHOPPROFILES_NEW_PROFILE"] = {
     text = "What do you want to name this profile?",
@@ -42,19 +82,35 @@ StaticPopupDialogs["BARBERSHOPPROFILES_NEW_PROFILE"] = {
     hideOnEscape = true,
     OnAccept = function (self, data)
         Core:CreateProfile()
-        Core:SaveCurrentProfileAs(self.editBox:GetText())
+        Core:SaveCurrentProfileAs(self:GetEditBox():GetText())
         ProfilePickerFrame:SetValue(Core:GetCurrentProfileId())
     end,
     OnShow = function (self, data)
-        self.button1:Disable()
+        local button1 = self:GetButton(1)
+        if button1 then
+            button1:Disable()
+        end
     end,
     EditBoxOnTextChanged = function (self, data)
-        if string.len(self:GetText()) > 0 then
-            self:GetParent().button1:Enable()
-        else
-            self:GetParent().button1:Disable()
+        local button1 = self:GetParent():GetButton(1)
+        if button1 then
+            if #self:GetText() > 0 then
+                button1:Enable()
+            else
+                button1:Disable()
+            end
         end
-    end
+    end,
+    EditBoxOnEscapePressed = function(self)
+        self:ClearFocus()
+        StaticPopup_Hide("BARBERSHOPPROFILES_NEW_PROFILE")
+    end,
+    EditBoxOnEnterPressed = function(self)
+        local button1 = self:GetParent():GetButton(1)
+        if button1:IsEnabled() then
+            button1:Click()
+        end
+    end,
 }
 
 local function prepareTooltipOptions(frame, text)
@@ -105,7 +161,9 @@ function ProfilePickerFrame:OnInitialize()
     self.frame.layoutIndex = 0
 
     local initializeDropdown = function()
-        Core:SetCurrentProfileTo(Core.systemProfile.id)
+        if not Core:GetCurrentProfileId() then
+          Core:SetCurrentProfileTo(Core.systemProfile.id)
+        end
 
         UIDropDownMenu_Initialize(self.frame, function(self)
             local currentId = Core:GetCurrentProfileId()
@@ -178,6 +236,7 @@ function ProfilePickerFrame:OnInitialize()
         self:SetValue(Core:GetCurrentProfileId())
     end
 
+    self:RegisterEvent("BARBER_SHOP_CLOSE", "OnBarberShopClose")
     self:RegisterEvent("BARBER_SHOP_CAMERA_VALUES_UPDATED", initializeDropdown)
     initializeDropdown()
 end
@@ -202,6 +261,11 @@ function ProfilePickerFrame:SetValue(newValue)
         DeleteButtonFrame.frame:Enable()
         LoadButtonFrame.frame:Enable()
     end
+end
+
+function ProfilePickerFrame:OnBarberShopClose()
+    Core:SetCurrentProfileTo(Core.systemProfile.id)
+    self:SetValue(Core.systemProfile.id)
 end
 
 function SaveButtonFrame:OnInitialize()
