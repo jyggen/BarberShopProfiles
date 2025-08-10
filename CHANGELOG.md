@@ -6,6 +6,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.2.4] - 2025-08-10
+### Changed
+- Bump TOC version to `110200`.
+
+### Fixed
+- Adapt to breaking changes in 11.2.0.
+- The selected profile would not be retained when switching body types.
+- Dialogues would not react to keyboard events as expected.
+
 ## [1.2.3] - 2025-03-02
 ### Changed
 - Bump TOC version to `110100`.
@@ -100,7 +109,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - Initial release.
 
-[Unreleased]: https://github.com/jyggen/BarberShopProfiles/compare/1.2.3...HEAD
+[Unreleased]: https://github.com/jyggen/BarberShopProfiles/compare/1.2.4...HEAD
+[1.2.4]: https://github.com/jyggen/BarberShopProfiles/compare/1.2.3...1.2.4
 [1.2.3]: https://github.com/jyggen/BarberShopProfiles/compare/1.2.2...1.2.3
 [1.2.2]: https://github.com/jyggen/BarberShopProfiles/compare/1.2.1...1.2.2
 [1.2.1]: https://github.com/jyggen/BarberShopProfiles/compare/1.2.0...1.2.1
